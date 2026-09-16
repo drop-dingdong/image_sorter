@@ -24,7 +24,7 @@ ios中app排列组合动作以及android端firefox标签页的组合动作。
 
 
 ## ui截图
-![开始时截图](/assets/ui_screenshot/begin.png)
+![开始时截图](/asset/ui_screenshot/begin.png)
 
 ## 声明：
 test_dir 以及 asset中的图片源自chatgpt的图片生成。AI (chatgpt, deepseek) 为egui的使用提供帮助。
