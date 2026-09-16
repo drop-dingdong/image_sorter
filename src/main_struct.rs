@@ -125,7 +125,8 @@ impl MainStruct<LoadState> {
     }
     pub fn max_len(&mut self) -> usize {
         // 返回任一层的最大包含的可保存的item个数
-        let mut len = self.data_list[0].len() + self.data_list[1].len();
+        let count = |x: &Vec<LoadState>| x.iter().filter(|e| e.is_loaddone()).count();
+        let mut len = count(&self.data_list[0]) + count(&self.data_list[1]);
         for pidx in 0..2 {
             let data_list_i = &self.data_list[pidx];
             for load_i in data_list_i {
@@ -139,7 +140,7 @@ impl MainStruct<LoadState> {
                 }
             }
         }
-        let mut del_len = self.data_list[2].len(); // 如果原地计算长度的话，需要计算回退的长度
+        let mut del_len = count(&self.data_list[2]); // 如果原地计算长度的话，需要计算回退的长度
         let stack_len = self.info_stack.len();
         if stack_len != 0 {
             for load_i in &self.data_list[2] {
@@ -156,7 +157,7 @@ impl MainStruct<LoadState> {
         }
         for stack_idx in (0..stack_len).rev() {
             let stack_data = &self.info_stack[stack_idx].data;
-            len = len.max(del_len + stack_data[0].len() + stack_data[1].len());
+            len = len.max(del_len + count(&stack_data[0]) + count(&stack_data[1]));
             for pidx in 0..2 {
                 let data_list_i = &stack_data[pidx];
                 for load_i in data_list_i {
@@ -170,7 +171,7 @@ impl MainStruct<LoadState> {
                     }
                 }
             }
-            del_len = stack_data[2].len();
+            del_len = count(&stack_data[2]);
             if stack_idx != 0 {
                 // 除了首层，其他的outer_panel内的数据都要储存，所以首层内unrename_panel数据不用统计其长度影响。
                 for load_i in &stack_data[2] {

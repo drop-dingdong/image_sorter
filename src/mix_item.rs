@@ -30,6 +30,12 @@ impl LoadState {
             _ => false,
         }
     }
+    pub fn is_loaddone(&self) -> bool {
+        match self {
+            LoadState::LoadDone(_) => true,
+            _ => false,
+        }
+    }
     // 将loading转化为loaderr
     pub fn err_load(&mut self) {
         match mem::take(self) {

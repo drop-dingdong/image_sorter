@@ -148,7 +148,7 @@ impl ImageSorter {
                 {
                     let num = self.main_content.max_len();
                     // 二次校检 rename pattern 是否有效
-                    if num < iter.max_size as usize {
+                    if num <= iter.max_size as usize {
                         let dir_str = self.top_panel[0].get_cache();
                         let rename_str = self.top_panel[1].get_cache();
                         //rename
