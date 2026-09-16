@@ -9,7 +9,7 @@ ios中app排列组合动作以及android端firefox标签页的组合动作。
 ## 具体操作
 必须需要说明的是，下面所说的rename，实质上是建立一个新文件夹，将原有图片以新名称复制进去。因为没有考虑好到底该如何处理新命名可能存在的重名现象所以没有原地重命名。
 
-0. 在linux桌面环境下运行release。
+0. 在linux桌面环境下运行release文件（wayland下，指定窗口大小失败，导致软件不可使用，请使用x11桌面环境）。
 1. 在"images dir"中输入图片所在文件夹后，点击右侧的确定按钮，将会在下方的"main panel"中加载所有后缀为"jpeg"、"jpg"、"png"的图片文件。
 2. 存在四个直接和图片相关的显示区域，分别被命名为"Main Panel"、"Assist Panel"、"Outer/Unrename Panel"以及"Img Show"。每个图片对应的项存在三种状态，"loading"、"loaddone"、"loaderr"，只有完全加载的图片"loaddone"才可以被拖拽。"loading"和"loaderr"内容上无差异，但显示效果有差异。
 3. Panel内的行为。每个Panel内部的图片项为一个图片序列，拖住图片可以视作从当前的序列移除，释放图片可以视作插入新的序列的给定位置，从而完成排序。释放时具体的行为依赖于图片中心和后面图片中心距离的关系。如果差距过大，则认为是插入该图片的前或后；如果差距过小，则认为这两张图片应当被视作同一个组别，而后这两个图片在显示上将被一个“图片组”代替。图片组也可类似单个图片项目被拖拽。
@@ -23,8 +23,9 @@ ios中app排列组合动作以及android端firefox标签页的组合动作。
 
 
 
-## ui截图
-![开始时截图](/asset/ui_screenshot/begin.png)
+## ui截图及演示
+![开始时截图](/asset/ui/begin.png)
 
+![一个演示图像](/asset/ui/output.gif)
 ## 声明：
 test_dir 以及 asset中的图片源自chatgpt的图片生成。AI (chatgpt, deepseek) 为egui的使用提供帮助。
